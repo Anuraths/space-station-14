@@ -205,3 +205,12 @@
   - !type:PowerWireAction
   - !type:AiInteractWireAction
   - !type:AccessWireAction
+
+- type: wireLayout
+  id: Cyborg
+  dummyWires: 2
+  wires:
+  - !type:LawSyncAction
+  - !type:IntelligenceLinkAction
+  - !type:AiVisionWireAction
+  - !type:CyborgLockdownAction
