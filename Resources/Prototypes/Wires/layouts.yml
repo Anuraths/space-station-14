@@ -210,7 +210,7 @@
   id: Cyborg
   dummyWires: 2
   wires:
-  - !type:LawSyncAction
-  - !type:IntelligenceLinkAction
+  - !type:LawSyncWireAction
+#  - !type:IntelligenceLinkAction
   - !type:AiVisionWireAction
-  - !type:CyborgLockdownAction
+ # - !type:CyborgLockdownAction

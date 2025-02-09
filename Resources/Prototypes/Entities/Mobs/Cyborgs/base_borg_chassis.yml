@@ -328,6 +328,8 @@
         type: DamageSelectorBoundUserInterface
       enum.BorgSwitchableTypeUiKey.SelectBorgType:
         type: BorgSelectTypeUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: IntrinsicUI
@@ -345,6 +347,10 @@
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: SiliconLawSynced
+  - type: StationAiVision
+  - type: Wires
+    layoutId: Cyborg
 
 - type: entity
   id: BaseBorgChassisSyndicate

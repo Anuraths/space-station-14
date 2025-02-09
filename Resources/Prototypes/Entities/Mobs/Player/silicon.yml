@@ -493,6 +493,7 @@
   - type: DoorRemote
   - type: Actions
   - type: StationAiCanShunt
+  - type: SiliconCanLawSync
   - type: Access
     groups:
     - AllAccess
