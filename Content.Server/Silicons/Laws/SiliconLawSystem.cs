@@ -53,8 +53,6 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         SubscribeLocalEvent<SiliconLawProviderComponent, MindAddedMessage>(OnLawProviderMindAdded);
         SubscribeLocalEvent<SiliconLawProviderComponent, MindRemovedMessage>(OnLawProviderMindRemoved);
         SubscribeLocalEvent<SiliconLawProviderComponent, GotEmaggedEvent>(OnEmagLawsAdded);
-
-        SubscribeLocalEvent<SiliconLawSyncedComponent, GetSiliconLawsEvent>(OnSyncGetLaws);
     }
 
     private void OnMapInit(EntityUid uid, SiliconLawBoundComponent component, MapInitEvent args)
@@ -192,14 +190,6 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
     }
 
-    private void OnSyncGetLaws(EntityUid uid, SiliconLawSyncedComponent component, ref GetSiliconLawsEvent args)
-    {
-        if (component.Syncer == null)
-            return;
-
-        args.Laws = GetLaws(component.Syncer.Value);
-        args.Handled = true;
-    }
     private void EnsureSubvertedSiliconRole(EntityUid mindId)
     {
         if (!_roles.MindHasRole<SubvertedSiliconRoleComponent>(mindId))
