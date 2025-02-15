@@ -346,14 +346,13 @@
     job: Borg
   - type: StationAiVision
   - type: Wires
+    boardName: wires-board-name-cyborg
     layoutId: Cyborg
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: SiliconLawSynced
-  - type: StationAiVision
-  - type: Wires
-    layoutId: Cyborg
+
 
 - type: entity
   id: BaseBorgChassisSyndicate

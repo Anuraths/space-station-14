@@ -43,6 +43,7 @@ wires-board-name-jukebox = Jukebox
 wires-board-name-computer = Computer
 wires-board-name-holopad = Holopad
 wires-board-name-barsign = Bar Sign
+wires-board-name-cyborg = Borg
 
 # names that get displayed in the wire hacking hud & admin logs.
 
@@ -71,3 +72,4 @@ wire-name-bomb-bolt = BOLT
 wire-name-speech = SPKR
 wire-name-listen = MIC
 wire-name-log = LOG
+wire-name-law-sync = SYNC
