@@ -1,5 +1,6 @@
 ﻿using Content.Server.Wires;
 using Content.Shared.Doors;
+using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Wires;
 using Robust.Shared.Random;
 
@@ -42,12 +43,16 @@ public sealed partial class LawSyncWireAction : ComponentWireAction<SiliconLawSy
 
     public override void Pulse(EntityUid user, Wire wire, SiliconLawSyncedComponent comp)
     {
-        if (comp.Syncer == null)
+        if (!EntityManager.TryGetComponent<SiliconLawProviderComponent>(wire.Owner, out var lawProto))
             return;
 
         var lawSystem = EntityManager.System<SiliconLawSystem>();
 
-        lawSystem.SetLaws(lawSystem.GetLaws(comp.Syncer.Value).Laws, comp.Owner);
+        var laws = comp.Syncer == null
+            ? lawSystem.GetLawset(lawProto.Laws).Laws
+            : lawSystem.GetLaws(comp.Syncer.Value).Laws;
+
+        lawSystem.SetLaws(laws, wire.Owner);
     }
 
     private enum PulseTimeoutKey : byte
