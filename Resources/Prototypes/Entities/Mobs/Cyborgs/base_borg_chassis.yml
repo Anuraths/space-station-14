@@ -344,6 +344,9 @@
     updateName: false
   - type: PresetIdCard
     job: Borg
+  - type: StationAiVision
+  - type: Wires
+    layoutId: Cyborg
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
