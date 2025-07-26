@@ -103,7 +103,7 @@
   - type: BodyPart
     partType: Arm
     symmetry: Left
-    overallDamageScale: 0.8
+    overallDamageScale: 0.4
     missProb: 0.5
   - type: BodyPartThresholds
     thresholds:
@@ -134,7 +134,7 @@
   - type: BodyPart
     partType: Arm
     symmetry: Right
-    overallDamageScale: 0.8
+    overallDamageScale: 0.4
     missProb: 0.5
   - type: BodyPartThresholds
     thresholds:
@@ -186,7 +186,7 @@
     partType: Leg
     symmetry: Left
     missProb: 0.4
-    overallDamageScale: 0.8
+    overallDamageScale: 0.4
   - type: MovementBodyPart
 
 - type: entity
@@ -225,7 +225,7 @@
     partType: Leg
     symmetry: Right
     missProb: 0.4
-    overallDamageScale: 0.8
+    overallDamageScale: 0.4
   - type: MovementBodyPart
 
 - type: entity
