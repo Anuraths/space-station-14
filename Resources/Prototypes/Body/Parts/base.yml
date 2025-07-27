@@ -29,10 +29,12 @@
     vital: true
   - type: Damageable
     damageContainer: Biological
-  - type: BodyPartThresholds
+  - type: BodyDamageOnDamage
+  - type: BodyDamage
+  - type: BodyDamageThresholds
     thresholds:
-      Healthy: 0
-      Damaged: 15
+      Alive: 0
+      Wounded: 15
       Dead: 100
   - type: OrganReplaceable
   - type: SurgeryReceiver
@@ -63,10 +65,12 @@
     vital: true
     overallDamageScale: 1.3
     missProb: 0.6
-  - type: BodyPartThresholds
+  - type: BodyDamageOnDamage
+  - type: BodyDamage
+  - type: BodyDamageThresholds
     thresholds:
-      Healthy: 0
-      Damaged: 10
+      Alive: 0
+      Wounded: 10
       Dead: 75
   - type: OrganReplaceable
   - type: SurgeryReceiver
@@ -105,10 +109,12 @@
     symmetry: Left
     overallDamageScale: 0.4
     missProb: 0.5
-  - type: BodyPartThresholds
+  - type: BodyDamageOnDamage
+  - type: BodyDamage
+  - type: BodyDamageThresholds
     thresholds:
-      Healthy: 0
-      Damaged: 5
+      Alive: 0
+      Wounded: 5
       Dead: 50
   - type: Damageable
     damageContainer: Biological
@@ -136,10 +142,12 @@
     symmetry: Right
     overallDamageScale: 0.4
     missProb: 0.5
-  - type: BodyPartThresholds
+  - type: BodyDamageOnDamage
+  - type: BodyDamage
+  - type: BodyDamageThresholds
     thresholds:
-      Healthy: 0
-      Damaged: 5
+      Alive: 0
+      Wounded: 5
       Dead: 50
   - type: Damageable
     damageContainer: Biological
@@ -195,10 +203,12 @@
   parent: BaseLeftLegNoDamage
   abstract: true
   components:
-  - type: BodyPartThresholds
+  - type: BodyDamageOnDamage
+  - type: BodyDamage
+  - type: BodyDamageThresholds
     thresholds:
-      Healthy: 0
-      Damaged: 5
+      Alive: 0
+      Wounded: 5
       Dead: 65
   - type: Damageable
     damageContainer: Biological
@@ -234,10 +244,12 @@
   parent: BaseRightLegNoDamage
   abstract: true
   components:
-  - type: BodyPartThresholds
+  - type: BodyDamageOnDamage
+  - type: BodyDamage
+  - type: BodyDamageThresholds
     thresholds:
-      Healthy: 0
-      Damaged: 5
+      Alive: 0
+      Wounded: 5
       Dead: 65
   - type: Damageable
     damageContainer: Biological

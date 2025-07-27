@@ -1,5 +1,7 @@
 using Content.Client.Alerts;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Damage.Components;
+using Content.Shared.Body.Damage.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
@@ -8,6 +10,8 @@ namespace Content.Client.Body.Systems;
 
 public sealed class BodySystem : SharedBodySystem
 {
+    [Dependency] private readonly BodyDamageThresholdsSystem _thresholds = default!;
+
     private const WoundState DeadState = WoundState.Dead;
     private const int SegmentCount = 7;
 
@@ -30,13 +34,7 @@ public sealed class BodySystem : SharedBodySystem
 
         foreach (var (currentPart, currentPartComp) in parts)
         {
-            if (!TryComp<DamageableComponent>(currentPart, out var damageableComp))
-                continue;
-
-            if (!TryComp<BodyPartThresholdsComponent>(currentPart, out var thresholdsComp) || !thresholdsComp.Thresholds.TryGetValue(DeadState, out var deadThreshold))
-                continue;
-
-
+            var relative = _thresholds.RelativeToState(currentPart, BodyDamageState.Dead);
             var bodyPart = new BodyPart(currentPartComp.PartType, currentPartComp.Symmetry);
             var layer = BodyPartToLayer(bodyPart);
 
