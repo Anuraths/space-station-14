@@ -89,7 +89,7 @@ public sealed partial class BodyDamageThresholdsSystem : EntitySystem
     [PublicAPI]
     public FixedPoint2 RelativeToState(Entity<BodyDamageThresholdsComponent?, BodyDamageableComponent?> ent, BodyDamageState state)
     {
-        if (!Resolve(ent.Owner, ref ent.Comp1, ref ent.Comp2))
+        if (!Resolve(ent.Owner, ref ent.Comp1, ref ent.Comp2, false))
             return FixedPoint2.Zero;
 
         if (ent.Comp1.CurrentState == state)

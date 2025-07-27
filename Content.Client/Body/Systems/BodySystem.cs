@@ -4,15 +4,16 @@ using Content.Shared.Body.Damage.Components;
 using Content.Shared.Body.Damage.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
+using Robust.Client.GameObjects;
 
 namespace Content.Client.Body.Systems;
 
 public sealed class BodySystem : SharedBodySystem
 {
+    [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly BodyDamageThresholdsSystem _thresholds = default!;
 
-    private const WoundState DeadState = WoundState.Dead;
     private const int SegmentCount = 7;
 
     public override void Initialize()
@@ -27,10 +28,9 @@ public sealed class BodySystem : SharedBodySystem
         if (args.Alert.ID != component.Alert)
             return;
 
-        var sprite = args.SpriteViewEnt.Comp;
         var parts = GetBodyChildren(uid, component);
 
-        HashSet<BodyPart> foundParts = new();
+        HashSet<BodyPart> foundParts = [];
 
         foreach (var (currentPart, currentPartComp) in parts)
         {
@@ -43,7 +43,7 @@ public sealed class BodySystem : SharedBodySystem
 
             float offset;
 
-            if (damageableComp.TotalDamage >= deadThreshold)
+            if (relative <= FixedPoint2.Zero)
             {
                 offset = SegmentCount;
             }
@@ -51,19 +51,19 @@ public sealed class BodySystem : SharedBodySystem
             {
                 // 1 indexed
                 // we programming in lua or some shit??
-                var percentage = (float) (damageableComp.TotalDamage / deadThreshold);
-                offset = (SegmentCount * percentage);
+                var percentage = (float)(1 / relative);
+                offset = SegmentCount * percentage;
 
                 if (offset < 0)
                     offset = 1;
                 else if (offset > SegmentCount - 1 && offset < SegmentCount)
                     offset = SegmentCount - 1; // reserve highest for dead only
                 else
-                    offset = (uint) Math.Ceiling(offset) + 1;
+                    offset = (uint)Math.Ceiling(offset) + 1;
             }
 
-            var state = $"{layer.ToString()}{offset}";
-            sprite.LayerSetState(layer, state);
+            var state = $"{layer}{offset}";
+            _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), layer, state);
 
             foundParts.Add(bodyPart);
         }
@@ -84,7 +84,7 @@ public sealed class BodySystem : SharedBodySystem
                 continue;
 
             var state = $"{layer}Removed";
-            sprite.LayerSetState(layer, state);
+            _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), layer, state);
         }
     }
 }
